@@ -61,11 +61,12 @@ class Main {
 class Solution
 
 {
-    static void dfs(int node,int vis[],Stack<Integer> st,ArrayList<ArrayList<Integer>> adj){
-        vis[node]=1;
+    static boolean vis[];
+    static void dfs(int node,Stack<Integer> st,ArrayList<ArrayList<Integer>> adj){
+        vis[node]=true;
         for(int i=0;i<adj.get(node).size();i++){
-            if(vis[adj.get(node).get(i)]==0){
-                dfs(adj.get(node).get(i),vis,st,adj);
+            if(vis[adj.get(node).get(i)]==false){
+                dfs(adj.get(node).get(i),st,adj);
             }
         }
         st.push(node);
@@ -74,11 +75,12 @@ class Solution
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
         // add your code here
-        int vis[]=new int[V];
+        vis=new boolean[V];
+        Arrays.fill(vis,false);
         Stack<Integer> st=new Stack<Integer>();
         for(int i=0;i<V;i++){
-            if(vis[i]==0){
-                dfs(i,vis,st,adj);
+            if(vis[i]==false){
+                dfs(i,st,adj);
             }
         }
         int ans[]=new int[V];
