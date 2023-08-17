@@ -63,9 +63,9 @@ class Solution
 {
     static void dfs(int node,int vis[],Stack<Integer> st,ArrayList<ArrayList<Integer>> adj){
         vis[node]=1;
-        for(int it: adj.get(node)){
-            if(vis[it]==0){
-                dfs(it,vis,st,adj);
+        for(int i=0;i<adj.get(node).size();i++){
+            if(vis[adj.get(node).get(i)]==0){
+                dfs(adj.get(node).get(i),vis,st,adj);
             }
         }
         st.push(node);
